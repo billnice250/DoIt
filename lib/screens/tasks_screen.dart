@@ -92,8 +92,11 @@ class _TasksScreenState extends State<TasksScreen> {
         onPressed: () {
           showModalBottomSheet(
               context: context,
+              isScrollControlled: true,
+
               builder: buildBottomSheet,
-              backgroundColor: Colors.transparent);
+              backgroundColor: Colors.transparent
+          );
         },
         child: Icon(
           Icons.add,
@@ -105,45 +108,50 @@ class _TasksScreenState extends State<TasksScreen> {
   }
 
   Widget buildBottomSheet(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(35.0),
-          topRight: Radius.circular(35.0),
+    return SingleChildScrollView(
+      child: Container(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(35.0),
+            topRight: Radius.circular(35.0),
+          ),
+          color: kMainAppColor,
         ),
-        color: kMainAppColor,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text(
-                'Add Task',
-                style: TextStyle(
-                    color: kAccentAppColor,
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.none),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
+                  'Add Task',
+                  style: TextStyle(
+                      color: kAccentAppColor,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.none),
+                ),
               ),
-            ),
-            TextField(
-              autofocus: true,
-              keyboardType: TextInputType.emailAddress,
-              textAlign: TextAlign.center,
-              onChanged: (value) {
-                setState(() {
-                  newTaskName = value;
-                });
-              },
-              decoration:
-                  kFormTextFieldDecoration.copyWith(hintText: 'Enter a Task'),
-            ),
-            MyRoundedButton(
-                title: 'Add', color: kAccentAppColor, onPressed: () {})
-          ],
+              TextField(
+                autofocus: true,
+                keyboardType: TextInputType.emailAddress,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  setState(() {
+                    newTaskName = value;
+                  });
+                },
+                decoration:
+                    kFormTextFieldDecoration.copyWith(hintText: 'Enter a Task'),
+              ),
+              MyRoundedButton(
+                  title: 'Add', color: kAccentAppColor, onPressed: () {
+
+              })
+            ],
+          ),
         ),
       ),
     );

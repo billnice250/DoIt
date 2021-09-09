@@ -6,8 +6,8 @@ const kAccentAppColor = Color(0xffFFC30B);
 const KDefaultTextStyle = TextStyle(
     color: kAccentAppColor,
     fontSize: 15.0,
-    fontWeight: FontWeight.normal,
-    decoration: TextDecoration.none);
+    fontWeight: FontWeight.normal
+);
 const kDarkMainTextStyle = TextStyle(
   color: Color(0xff0D2646),
   fontWeight: FontWeight.bold,
