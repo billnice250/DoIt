@@ -39,9 +39,9 @@
     },
     {
       "name": "cupertino_icons",
-      "rootUri": "file:///Users/billnice/FlutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.0",
+      "rootUri": "file:///Users/billnice/FlutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.3",
       "packageUri": "lib/",
-      "languageVersion": "2.0"
+      "languageVersion": "2.12"
     },
     {
       "name": "fake_async",
@@ -74,8 +74,20 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "nested",
+      "rootUri": "file:///Users/billnice/FlutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/nested-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "path",
       "rootUri": "file:///Users/billnice/FlutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "provider",
+      "rootUri": "file:///Users/billnice/FlutterDev/flutter/.pub-cache/hosted/pub.dartlang.org/provider-6.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -140,7 +152,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-09-09T14:42:29.548965Z",
+  "generated": "2021-09-10T16:09:50.196043Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

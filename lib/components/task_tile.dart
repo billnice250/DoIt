@@ -27,11 +27,3 @@ class TaskTile extends StatelessWidget {
         ));
   }
 }
-/*
-(bool value) {
-setState(() {
-isChecked = value;
-});
-},
-
-*/

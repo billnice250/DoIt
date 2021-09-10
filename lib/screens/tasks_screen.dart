@@ -1,25 +1,19 @@
 import 'package:do_it/components/rounded_button.dart';
 import 'package:do_it/components/tasks_list.dart';
-import 'package:do_it/models/task.dart';
+import 'package:do_it/models/task_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../constants.dart';
 
-class TasksScreen extends StatefulWidget {
+class TasksScreen extends StatelessWidget {
   static String id;
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
 
-class _TasksScreenState extends State<TasksScreen> {
-  String newTaskName;
-  List<Task> tasks = [
-    Task(name: 'Buy milk'),
-    Task(name: 'Buy eggs'),
-  ];
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
         color: kAccentAppColor,
@@ -57,7 +51,8 @@ class _TasksScreenState extends State<TasksScreen> {
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.none),
                         ),
-                        Text('${tasks.length} Tasks',
+                        Text(
+                            '${Provider.of<TaskData>(context).tasks.length} Tasks',
                             style: TextStyle(
                               color: kMainTextColor,
                             )),
@@ -80,7 +75,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Container(
-                    child: TasksList(tasks),
+                    child: TasksList(),
                   ),
                 ),
               ),
@@ -107,6 +102,8 @@ class _TasksScreenState extends State<TasksScreen> {
   }
 
   Widget buildBottomSheet(BuildContext context) {
+    String newTaskName;
+
     return SingleChildScrollView(
       child: Container(
         padding:
@@ -139,9 +136,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  setState(() {
-                    newTaskName = value;
-                  });
+                  newTaskName=value;
                 },
                 decoration:
                     kFormTextFieldDecoration.copyWith(hintText: 'Enter a Task'),
@@ -150,9 +145,9 @@ class _TasksScreenState extends State<TasksScreen> {
                 title: 'Add',
                 color: kAccentAppColor,
                 onPressed: () {
-                  setState(() {
-                    tasks.add(Task(name: newTaskName));
-                  });
+
+                  Provider.of<TaskData>(context,listen: false).addTask(newTaskName);
+                  //tasks.add(Task(name: newTaskName));
 
                   Navigator.pop(context);
                 },
