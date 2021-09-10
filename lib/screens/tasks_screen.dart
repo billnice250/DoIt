@@ -1,22 +1,23 @@
 import 'package:do_it/components/rounded_button.dart';
 import 'package:do_it/components/tasks_list.dart';
+import 'package:do_it/models/task.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
 class TasksScreen extends StatefulWidget {
   static String id;
-
-  const TasksScreen({Key key});
-
   @override
   _TasksScreenState createState() => _TasksScreenState();
 }
 
 class _TasksScreenState extends State<TasksScreen> {
   String newTaskName;
+  List<Task> tasks = [
+    Task(name: 'Buy milk'),
+    Task(name: 'Buy eggs'),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +57,7 @@ class _TasksScreenState extends State<TasksScreen> {
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.none),
                         ),
-                        Text('12 tasks',
+                        Text('${tasks.length} Tasks',
                             style: TextStyle(
                               color: kMainTextColor,
                             )),
@@ -79,7 +80,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Container(
-                    child: TasksList(),
+                    child: TasksList(tasks),
                   ),
                 ),
               ),
@@ -93,10 +94,8 @@ class _TasksScreenState extends State<TasksScreen> {
           showModalBottomSheet(
               context: context,
               isScrollControlled: true,
-
               builder: buildBottomSheet,
-              backgroundColor: Colors.transparent
-          );
+              backgroundColor: Colors.transparent);
         },
         child: Icon(
           Icons.add,
@@ -110,7 +109,8 @@ class _TasksScreenState extends State<TasksScreen> {
   Widget buildBottomSheet(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(35.0),
@@ -147,11 +147,16 @@ class _TasksScreenState extends State<TasksScreen> {
                     kFormTextFieldDecoration.copyWith(hintText: 'Enter a Task'),
               ),
               MyRoundedButton(
-                  title: 'Add', color: kAccentAppColor, onPressed: () {
+                title: 'Add',
+                color: kAccentAppColor,
+                onPressed: () {
+                  setState(() {
+                    tasks.add(Task(name: newTaskName));
+                  });
 
-
-
-              })
+                  Navigator.pop(context);
+                },
+              )
             ],
           ),
         ),
